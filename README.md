@@ -1,4 +1,4 @@
-# Javascript VueJS template for Cloud Sandbox
+# Vue Javascript template for Cloud Sandbox
 
 This is a [Vue](https://vuejs.org/) javascript template, for quick development setup in Cloud Sandbox.
 
