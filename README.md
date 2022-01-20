@@ -49,25 +49,27 @@ The following [App Definition](https://docs.sandboxes.cloud/docs/app-definition)
 
 ```yaml
 endpoints:
-  - name: web
-    http:
-      routes:
-        - pathPrefix: '/'
-          backend:
-            target: js-vue
-            port: web
+- name: app
+  http:
+    routes:
+    - pathPrefix: "/"
+      backend:
+        target: js-vue
+        port: app
+    authProxy:
+      disabled: true
 workspaces:
-  - name: js-vue
-    description: Template frontend using Js/Vue
-    ports:
-      - name: web
-        port: 3001
-        protocol: HTTP/TCP
-    checkouts:
-      - path: frontend
-        repo:
-          git: https://github.com/crafting-dev/template-javascript-vuejs
-    packages:
-      - name: nodejs
-        version: 16.12.0
+- name: js-vue
+  description: Template frontend using Js/Vue
+  ports:
+  - name: app
+    port: 3001
+    protocol: HTTP/TCP
+  checkouts:
+  - path: frontend
+    repo:
+      git: https://github.com/crafting-dev/template-javascript-vuejs
+  packages:
+  - name: nodejs
+    version: 16.12.0
 ```
