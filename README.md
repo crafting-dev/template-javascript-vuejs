@@ -1,17 +1,19 @@
 # Javascript/Vuejs template for Crafting Sandbox
 
-This is a Javascript/[Vue.js](https://vuejs.org/) template, configured for quick development setup in [Crafting Sandbox](https://crafting.readme.io/docs).
+This is a Javascript/[Vue.js](https://vuejs.org/) template, configured for quick development setup in [Crafting Sandbox](https://docs.sandboxes.cloud/docs).
 
 ## Specifications
 
 This template contains a single [`Ping`](src/components/Ping.vue) component:
+
 ```vue
 <template>
   <Ping />
 </template>
 ```
 
-This component consists of a form with a single input and a button. 
+This component consists of a form with a single input and a button.
+
 ```vue
 <form @submit.prevent="pingServer">
   <input v-model="ping" placeholder="Ping server with some text...">
@@ -19,7 +21,9 @@ This component consists of a form with a single input and a button.
   <button type="submit">Submit</button>
 </form>
 ```
+
 Once form is submitted, a GET request is made to some backend server that exposes a `/ping` api. This Ping component then renders the api response data.
+
 ```vue
 <div v-if="pong">
   <code>
@@ -34,36 +38,38 @@ Once form is submitted, a GET request is made to some backend server that expose
 ```
 
 To run the app, you can do:
+
 ```bash
 npm start -- --port 3001
 ```
 
-## App Configuration
+## App Definition
 
-The following [App configuration](https://crafting.readme.io/docs/app-spec) was used to create this template:
+The following [App Definition](https://docs.sandboxes.cloud/docs/app-definition) was used to create this template:
 
 ```yaml
 endpoints:
-- http:
-  routes:
-  - backend:
-      port: http
-      target: js-vue
-    path_prefix: /
-name: app
-services:
-- description: Javascript/Vuejs template
-name: js-vue
-workspace:
-  checkouts:
-  - path: src/template-javascript-vuejs
-    repo:
-      git: https://github.com/crafting-dev/template-javascript-vuejs.git
-  packages:
-  - name: nodejs
-    version: ~16
+- name: app
+  http:
+    routes:
+    - pathPrefix: "/"
+      backend:
+        target: js-vue
+        port: app
+    authProxy:
+      disabled: true
+workspaces:
+- name: js-vue
+  description: Template frontend using Js/Vue
   ports:
-  - name: http
+  - name: app
     port: 3001
     protocol: HTTP/TCP
+  checkouts:
+  - path: frontend
+    repo:
+      git: https://github.com/crafting-dev/template-javascript-vuejs
+  packages:
+  - name: nodejs
+    version: 16.12.0
 ```

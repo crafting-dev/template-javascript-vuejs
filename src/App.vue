@@ -3,14 +3,14 @@
 </template>
 
 <script>
-import Ping from './components/Ping.vue'
+import Ping from './components/Ping.vue';
 
 export default {
   name: 'App',
   components: {
     Ping
   }
-}
+};
 </script>
 
 <style>
